@@ -1,0 +1,20 @@
+{
+  "name": "peachlauncher",
+  "version": "1.0.0",
+  "description": "The Best MC Launcher",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "exports": {
+    "./*": "./src/*.js"
+  },
+  "author": "LimeGradient",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^31.3.0",
+    "electron-better-ipc": "^2.0.1",
+    "electron-json-storage": "^4.6.0",
+    "msmc": "^5.0.5"
+  }
+}
