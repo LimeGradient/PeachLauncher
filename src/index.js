@@ -4,6 +4,7 @@ const {ipcMain: ipc} = require('electron-better-ipc')
 const path = require('path')
 
 const auth = require('./auth')
+const mc = require('./minecraft')
 
 const window = {
     window: null,
@@ -24,12 +25,22 @@ function createWindow() {
     })
     window.setWindow = win
     win.loadFile(path.join(__dirname, "pages/index.html"))
+    auth.refreshLogin()
 }
 
 app.whenReady().then(() => {
     createWindow()
 
     ipc.handle("sendLogin", () => auth.login())
+
+    ipc.handle("launch_game", async () => {
+        const mcVersion = await ipc.callFocusedRenderer("launchGame")
+        mc.launchGame(mcVersion.toString())
+    })
+
+    ipc.answerRenderer("getDownloadProgress", async () => {
+        return [mc.currentDownload.getProgress, mc.currentDownload.getTotal]
+    })
 })
 
 app.on('window-all-closed', () => {

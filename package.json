@@ -15,6 +15,8 @@
     "electron": "^31.3.0",
     "electron-better-ipc": "^2.0.1",
     "electron-json-storage": "^4.6.0",
-    "msmc": "^5.0.5"
+    "minecraft-launcher-core": "^3.18.1",
+    "msmc": "^5.0.5",
+    "njre": "^1.2.2"
   }
 }
